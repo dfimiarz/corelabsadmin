@@ -8,13 +8,12 @@ security:
             memory:
                 users:
                     admin:
-                        password:   admin
+                        password:   $2y$13$Qrov7ydSTRuu7/1xnbNZqOzC/FAWkoX2my53MYY9cRI5TnOGh9C/u
                         roles:      ROLE_ADMIN
                         
     encoders:
         Symfony\Component\Security\Core\User\User:
-                algorithm:  bcrypt
-                cost:       12
+            algorithm: bcrypt
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs

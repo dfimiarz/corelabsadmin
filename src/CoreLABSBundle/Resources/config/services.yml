@@ -1,4 +1,10 @@
 services:
+    core_labs.crypto_service:
+        class: CoreLABSBundle\Utils\CryptoService
+        arguments: [%core_labs_crypto_key%]
+    core_labs.con_mysqli:
+        class: mysqli
+        arguments: [%database_host%,%database_user%,%database_password%,%database_name%,%database_port%]
 #    core_labs.example:
 #        class: CoreLABSBundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]
