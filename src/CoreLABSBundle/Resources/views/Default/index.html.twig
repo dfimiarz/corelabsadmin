@@ -1,11 +1,128 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Home page
+   <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">CCNY CoreLABS</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://corelabs.sci.ccny.cuny.edu">Online Schedule</a>
+                    </li>
+                    <li>
+                        <a href="http://forum.sci.ccny.cuny.edu/core_facilities/corelabs-guide/contact">Contact us</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">CCNY CoreLABS
+                    <small>City College of New York</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-6">
+                <img class="img-responsive" src="{{ asset("bundles/corelabs/img/largeimg.jpg") }}" alt="LSM 800">
+            </div>
+
+            <div class="col-md-3">
+                <h3>Welcome to CCNY CoreLABS</h3>
+                <p>City College of New York maintains a fleet of scientific instrumentation accessible to both academic as well as commercial users. Please visit the "services" section to learn more about our science and how we can help to advance your research projects.</p>
+            </div>
+            <div class="col-md-3">
+                <a class="twitter-timeline" data-height="350" data-chrome="nofooter noborders"  data-link-color="#981CEB" href="https://twitter.com/DivOfScience">Tweets by DivOfScience</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h3 class="page-header">Resources</h3>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="http://forum.sci.ccny.cuny.edu/core_facilities">
+                    <img class="img-responsive portfolio-item" src="{{ asset("bundles/corelabs/img/equipment.jpg")}}" alt="">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="#">
+                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; CCNY CoreLABS 2016</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
 {% endblock %}
 
 {% block stylesheets %}
+{{ parent() }}
 <style>
-    
+    body {
+        padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+
+    .portfolio-item {
+        margin-bottom: 25px;
+    }
+
+    footer {
+        margin: 50px 0;
+    }
 </style>
 {% endblock %}
