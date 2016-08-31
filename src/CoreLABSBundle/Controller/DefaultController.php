@@ -11,7 +11,7 @@ use CoreLABSBundle\Utils\CryptoService as CryptoService;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="admin_home")
+     * @Route("/", name="start")
      */
     public function indexAction()
     {
@@ -19,7 +19,16 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/listusers", name="listusers")
+     * @Route("/dashboard", name="dashboard")
+     */
+    public function adminDashboardAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('CoreLABSBundle:Default:admin.dashboard.html.twig');
+    }
+    
+    /**
+     * @Route("/dashboard/users", name="manage_users")
      */
     public function listUsersAction(Request $request)
     {
@@ -28,7 +37,7 @@ class DefaultController extends Controller
     }
     
      /**
-     * @Route("/user/{enc_id}", name="showuserinfo")
+     * @Route("/dashboard/users/{enc_id}", name="user_details")
      */
     public function userDetailsAction($enc_id)
     {

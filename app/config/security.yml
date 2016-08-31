@@ -36,5 +36,5 @@ security:
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             
     access_control:
-        # require ROLE_ADMIN for /admin*
-        - { path: ^/listusers, roles: ROLE_ADMIN }
+        # require ROLE_ADMIN for /dashboard*
+        - { path: ^/dashboard, roles: ROLE_ADMIN }
