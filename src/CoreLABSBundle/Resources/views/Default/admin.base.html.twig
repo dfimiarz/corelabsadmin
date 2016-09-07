@@ -34,7 +34,7 @@
   </head>
 
   <body>
-
+    {% block nav %}
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -54,35 +54,12 @@
         </div>
       </div>
     </nav>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12 panel-header" >
-            <div class="h1">CCNY CoreLABS</div><div class="h4">Administration Panel</div>
-        </div>
-        <div class="col-xs-8 col-xs-offset-2  main">
-
-          <div class="row placeholders">
-            <div class="col-xs-12 col-sm-6 col-md-4 placeholder">
-                <a href="http://corelabsamdin.dev/manage/users"><img src="{{ asset("bundles/corelabs/img/users.png")}}" width="250" height="250" class="img-responsive" alt="Manage users"></a>
-              <h3>Users</h3>
-              <span class="text-muted">View/manage user information</span>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 placeholder">
-              <img src="{{ asset("bundles/corelabs/img/facilities.png")}}" width="250" height="250" class="img-responsive" alt="Manage facilities and services">
-              <h3>Facilities</h3>
-              <span class="text-muted">Manage facilities or services</span>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 placeholder">
-              <img src="{{ asset("bundles/corelabs/img/billing.png")}}" width="250" height="250" class="img-responsive" alt="Manage billing information">
-              <h3>Billing</h3>
-              <span class="text-muted">View/manage billing</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    {% endblock %}
+    
+    {% block content %}
+        Page content
+    {% endblock %}  
+    
     {% block javascripts %}
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

@@ -33,7 +33,7 @@ class DefaultController extends Controller
     public function listUsersAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('CoreLABSBundle:Default:list_users.html.twig');
+        return $this->render('CoreLABSBundle:Default:admin.manage.users.html.twig');
     }
     
      /**

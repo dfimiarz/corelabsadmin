@@ -2,8 +2,34 @@
 
 {% block title %}CoreLABS - Admin Dashboard{% endblock %}
 
-{% block body %}
-    
+{% block content %}
+     <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12 panel-header" >
+            <div class="h1">CCNY CoreLABS</div><div class="h4">Administration Panel</div>
+        </div>
+        <div class="col-xs-8 col-xs-offset-2  main">
+
+          <div class="row placeholders">
+            <div class="col-xs-12 col-sm-6 col-md-4 placeholder">
+                <a href="{{ path("manage_users") }}"><img src="{{ asset("bundles/corelabs/img/users.png")}}" width="250" height="250" class="img-responsive" alt="Manage users"></a>
+              <h3>Users</h3>
+              <span class="text-muted">View/manage user information</span>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 placeholder">
+              <img src="{{ asset("bundles/corelabs/img/facilities.png")}}" width="250" height="250" class="img-responsive" alt="Manage facilities and services">
+              <h3>Facilities</h3>
+              <span class="text-muted">Manage facilities or services</span>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 placeholder">
+              <img src="{{ asset("bundles/corelabs/img/billing.png")}}" width="250" height="250" class="img-responsive" alt="Manage billing information">
+              <h3>Billing</h3>
+              <span class="text-muted">View/manage billing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}
 
 {% block stylesheets %}

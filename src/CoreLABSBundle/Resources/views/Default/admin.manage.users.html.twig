@@ -1,0 +1,60 @@
+{% extends 'CoreLABSBundle:default:admin.base.html.twig' %}
+
+{% block title %}CoreLABS - Manage users{% endblock %}
+
+{% block content %}
+     <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12 panel-header" >
+            <div class="h1">CCNY CoreLABS</div><div class="h4">Find a user</div>
+        </div>
+          <div class="col-xs-8 col-xs-offset-2">
+              <div class="row">
+                  <table class="table table-striped">
+                      <thead>
+                          <tr>
+                              <th>User Name</th>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>P.I.</th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>dfimiarz</td>
+                              <td>Daniel Fimiarz</td>
+                              <td>john@example.com</td>
+                              <td>Daniel Fimiarz</td>
+                              <td><a href="#" class="btn btn-info" role="button">Details</a></td>
+                          </tr>
+                          <tr>
+                              <td>dfimiarz</td>
+                              <td>Daniel Fimiarz</td>
+                              <td>john@example.com</td>
+                              <td>Daniel Fimiarz</td>
+                              <td><a href="#" class="btn btn-info" role="button">Details</a></td>
+                          </tr>
+                          <tr>
+                              <td>dfimiarz</td>
+                              <td>Daniel Fimiarz</td>
+                              <td>john@example.com</td>
+                              <td>Daniel Fimiarz</td>
+                              <td><a href="#" class="btn btn-info" role="button">Details</a></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+{% endblock %}   
+ 
