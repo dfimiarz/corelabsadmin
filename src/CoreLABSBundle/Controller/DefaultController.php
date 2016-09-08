@@ -33,10 +33,24 @@ class DefaultController extends Controller
     public function listUsersAction(Request $request)
     {
         
-        $users = array( array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
+        $result_limit = 10;
+        
+        $s_term = $request->get('s_term');
+        $s_type = $request->get('s_type');
+        $s_page = $request->get('page',0);
+        
+        $users = array( array("uname"=>$s_term,'name'=>$s_type,'email'=>$s_page,'phone'=>'(212) 999-9999'),
+                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
+                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
+                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
+                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
+                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
+                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
+                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
                         array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
                         array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'));
-        $data = array("users"=>$users);
+        
+        $data = array("users"=>$users,"s_term"=>$s_term,"s_type"=>$s_type,"page"=>$s_page,"next"=>true);
         return $this->render('CoreLABSBundle:Default:admin.manage.users.html.twig',$data);
     }
     
