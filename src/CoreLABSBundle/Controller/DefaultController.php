@@ -32,8 +32,12 @@ class DefaultController extends Controller
      */
     public function listUsersAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('CoreLABSBundle:Default:admin.manage.users.html.twig');
+        
+        $users = array( array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
+                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
+                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'));
+        $data = array("users"=>$users);
+        return $this->render('CoreLABSBundle:Default:admin.manage.users.html.twig',$data);
     }
     
      /**
