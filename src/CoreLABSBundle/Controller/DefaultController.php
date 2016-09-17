@@ -32,25 +32,32 @@ class DefaultController extends Controller
      */
     public function listUsersAction(Request $request)
     {
+        $s_type_keys = array("un","ln","fn");
+                
+        $s_types = array(array("val" => $s_type_keys[0], "txt" => "User Name", "sel" => null ),
+            array("val" => $s_type_keys[1], "txt" => "Last Name", "sel" => null),
+            array("val" => $s_type_keys[2], "txt" => "First Name", "sel" => null));
+
+        $s_type = $request->get('s_type', null);
         
-        $result_limit = 10;
-        
-        $s_term = $request->get('s_term');
-        $s_type = $request->get('s_type');
-        $s_page = $request->get('page',0);
-        
-        $users = array( array("uname"=>$s_term,'name'=>$s_type,'email'=>$s_page,'phone'=>'(212) 999-9999'),
-                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
-                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
-                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
-                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
-                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
-                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
-                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
+        $s_key = $request->get('s_key', null);
+
+        if( !in_array($s_type, $s_type_keys)){
+            $s_type = $s_type_keys[0];
+        }
+
+        foreach ($s_types as $key => $value) {
+            if ($value["val"] == $s_type) {
+                $s_types[$key]["sel"] = "selected";
+            }
+        }
+
+        //Find all users for a given search type and search key.
+
+        $users = array( array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
                         array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
                         array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'));
-        
-        $data = array("users"=>$users,"s_term"=>$s_term,"s_type"=>$s_type,"page"=>$s_page,"next"=>true);
+        $data = array("users"=>$users,"s_key"=>$s_key,"s_types"=>$s_types);
         return $this->render('CoreLABSBundle:Default:admin.manage.users.html.twig',$data);
     }
     

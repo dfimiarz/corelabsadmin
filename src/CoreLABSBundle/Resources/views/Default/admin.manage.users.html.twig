@@ -13,13 +13,13 @@
                     <div class="form-group">
                         <label for="searchtypeselect">Search by:</label>
                         <select class="form-control"  id="searchtypeselect" name="s_type">
-                            <option value="un">Username</option>
-                            <option value="fn">Last Name</option>
-                            <option value="ln">First Name</option>
+                            {% for s_type in s_types %}
+                                <option value="{{ s_type.val }}" {{ s_type.sel|default('') }}>{{ s_type.txt }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="s_term" value="{{ s_term }}"/>
+                        <input class="form-control" type="text" name="s_key" value="{{ s_key|e }}"/>
                     </div>
                     <button type="submit" class="btn btn-default">Search</button>
                 </form>
