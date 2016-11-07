@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CoreLABSBundle\Entity\Groups" table="groups">
+    <indexes>
+      <index name="group_type_fk" columns="type"/>
+    </indexes>
+    <id name="groupId" type="integer" column="group_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="128" nullable="false"/>
+    <field name="email" type="string" column="email" length="64" nullable="false"/>
+    <field name="address1" type="string" column="address1" length="64" nullable="false"/>
+    <field name="address2" type="string" column="address2" length="64" nullable="true"/>
+    <field name="city" type="string" column="city" length="32" nullable="false"/>
+    <field name="state" type="string" column="state" length="2" nullable="false"/>
+    <field name="zip" type="string" column="zip" length="5" nullable="false"/>
+    <field name="officePhone" type="string" column="office_phone" length="32" nullable="false"/>
+    <field name="secondaryPhone" type="string" column="secondary_phone" length="32" nullable="true"/>
+    <field name="fax" type="string" column="fax" length="32" nullable="true"/>
+    <field name="homePage" type="string" column="home_page" length="256" nullable="true"/>
+    <many-to-one field="type" target-entity="GroupType">
+      <join-columns>
+        <join-column name="type" referenced-column-name="type_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -2,11 +2,13 @@
 
 namespace CoreLABSBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use CoreLABSBundle\Entity\CoreUserDAO;
+use CoreLABSBundle\Entity\CoreUserVO;
+use CoreLABSBundle\Utils\CryptoService as CryptoService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use CoreLABSBundle\Utils\CryptoService as CryptoService;
 
 class DefaultController extends Controller
 {
@@ -32,46 +34,48 @@ class DefaultController extends Controller
      */
     public function listUsersAction(Request $request)
     {
-        $s_type_keys = array("un","ln","fn");
-                
-        $s_types = array(array("val" => $s_type_keys[0], "txt" => "User Name", "sel" => null ),
-            array("val" => $s_type_keys[1], "txt" => "Last Name", "sel" => null),
-            array("val" => $s_type_keys[2], "txt" => "First Name", "sel" => null));
-
-        $s_type = $request->get('s_type', null);
         
-        $s_key = $request->get('s_key', null);
+        $conn = $this->get("database_connection");
+        
+        \var_dump($conn);
+        exit();
+        
+        $s_types = array("un"=>array( "txt" => "User Name", "sel" => null ),
+            "ln"=>array( "txt" => "Last Name", "sel" => null),
+            "fn"=>array( "txt" => "First Name", "sel" => null));
 
-        if( !in_array($s_type, $s_type_keys)){
-            $s_type = $s_type_keys[0];
-        }
+        $s_type = $request->query->getAlpha('s_type', "un" );
+        
+        $s_key = $request->query->get("s_key", null);
 
         foreach ($s_types as $key => $value) {
-            if ($value["val"] == $s_type) {
+            if ($key == $s_type) {
                 $s_types[$key]["sel"] = "selected";
             }
         }
+        
+        /* @var $crypto_service CryptoService */
+        $crypto_service = $this->get("core_labs.crypto_service");
+        $userDAO = new CoreUserDAO($this->get("core_labs.con_mysqli"));
 
-        //Find all users for a given search type and search key.
+        /* @var $users CoreUserVO[] */
+        $users = $userDAO->findUsers($s_key, $s_type);
 
-        $users = array( array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
-                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'),
-                        array("uname"=>"jdoe",'name'=>"John Doe",'email'=>'jdoe@doe.com','phone'=>'(212) 999-9999'));
         $data = array("users"=>$users,"s_key"=>$s_key,"s_types"=>$s_types);
         return $this->render('CoreLABSBundle:Default:admin.manage.users.html.twig',$data);
+        
+        
     }
     
      /**
-     * @Route("/dashboard/users/{enc_id}", name="user_details")
+     * @Route("/dashboard/users/{id}", name="user_details")
      */
-    public function userDetailsAction($enc_id)
+    public function userDetailsAction($id)
     {
-        $mysqli = $this->get("core_labs.con_mysqli");
+        //$mysqli = $this->get("core_labs.con_mysqli");
         
         
-        /* @var $crypto CryptoService */
-        $crypto = $this->get("core_labs.crypto_service");
-        $value = $crypto->encrypt($enc_id);
-        return new Response("value: " . $value);
+        
+        return new Response($id);
     }
 }

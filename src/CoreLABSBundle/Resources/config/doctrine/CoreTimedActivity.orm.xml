@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CoreLABSBundle\Entity\CoreTimedActivity" table="core_timed_activity">
+    <indexes>
+      <index name="cts_user_id_fk_idx" columns="user"/>
+      <index name="cta_status_fk_idx" columns="state"/>
+      <index name="cts_service_id_fk_idx" columns="service_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="timeRecorded" type="datetime" column="time_recorded" nullable="false"/>
+    <field name="timeModified" type="datetime" column="time_modified" nullable="false"/>
+    <field name="start" type="datetime" column="start" nullable="false"/>
+    <field name="end" type="datetime" column="end" nullable="false"/>
+    <field name="note" type="text" column="note" length="65535" nullable="true"/>
+    <many-to-one field="user" target-entity="CoreUsers">
+      <join-columns>
+        <join-column name="user" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="service" target-entity="CoreServices">
+      <join-columns>
+        <join-column name="service_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="state" target-entity="CoreActivityStates">
+      <join-columns>
+        <join-column name="state" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

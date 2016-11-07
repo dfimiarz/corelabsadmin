@@ -8,13 +8,13 @@
             <div class="col-sm-12 panel-header" >
                 <span class="h1">CoreLABS Users</span>
             </div>
-            <div class="col-sm-12" >
+            <div class="col-sm-12 user-search-cont">
                 <form class="form-inline" method="get" action="{{ path("manage_users")}}">
                     <div class="form-group">
                         <label for="searchtypeselect">Search by:</label>
                         <select class="form-control"  id="searchtypeselect" name="s_type">
-                            {% for s_type in s_types %}
-                                <option value="{{ s_type.val }}" {{ s_type.sel|default('') }}>{{ s_type.txt }}</option>
+                            {% for key,s_type in s_types %}
+                                <option value="{{ key }}" {{ s_type.sel|default('') }}>{{ s_type.txt }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -40,15 +40,18 @@
                             <tbody>
                                 {% for user in users %}
                                     <tr>
-                                        <td>{{ user.uname }}</td>
-                                        <td>{{ user.name }}</td>
-                                        <td>{{ user.email }}</td>
-                                        <td>{{ user.phone }}</td>
-                                        <td><a href="#" class="btn btn-info btn-sm" role="button">Details</a></td>
+                                        <td>{{ user.getUsername }}</td>
+                                        <td>{{ user.getFullName }}</td>
+                                        <td>{{ user.getEmail }}</td>
+                                        <td>{{ user.getPhone }}</td>
+                                        <td><a href="{{ path('user_details',{'id': user.getID|url_encode() }) }}" class="btn btn-info btn-sm" role="button">Details</a></td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
+                    </div>
+                    <div>
+                        <span>Displaying {{ users|length }} result(s)</span>
                     </div>
                 </div>
             </div>

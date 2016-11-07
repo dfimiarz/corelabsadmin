@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CoreLABSBundle\Entity\CoreServices" table="core_services">
+    <indexes>
+      <index name="cs_resourceid_fk_idx" columns="resource_id"/>
+      <index name="cs_type_id_fk_idx" columns="type"/>
+      <index name="cs_state_id_fk_idx" columns="state"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="32" nullable="false"/>
+    <field name="shortName" type="string" column="short_name" length="32" nullable="false"/>
+    <field name="description" type="string" column="description" length="100" nullable="true"/>
+    <many-to-one field="type" target-entity="CoreServiceTypes">
+      <join-columns>
+        <join-column name="type" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="state" target-entity="CoreServiceState">
+      <join-columns>
+        <join-column name="state" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="resource" target-entity="CoreResources">
+      <join-columns>
+        <join-column name="resource_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
