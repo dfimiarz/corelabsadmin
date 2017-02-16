@@ -12,14 +12,14 @@
                 <form class="form-inline" method="get" action="{{ path("manage_users")}}">
                     <div class="form-group">
                         <label for="searchtypeselect">Search by:</label>
-                        <select class="form-control"  id="searchtypeselect" name="s_type">
-                            {% for key,s_type in s_types %}
-                                <option value="{{ key }}" {{ s_type.sel|default('') }}>{{ s_type.txt }}</option>
+                        <select class="form-control"  id="searchtypeselect" name="ftype">
+                            {% for key,f_type in f_types %}
+                                <option value="{{ key }}" {{ f_type.sel|default('') }}>{{ f_type.txt }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="s_key" value="{{ s_key|e }}"/>
+                        <input class="form-control" type="text" name="fval" value="{{ f_val|e }}"/>
                     </div>
                     <button type="submit" class="btn btn-default">Search</button>
                 </form>
@@ -53,6 +53,14 @@
                     <div>
                         <span>Displaying {{ users|length }} result(s)</span>
                     </div>
+                    <div>
+                        <ul class="pagination">
+                            <li><a href="{{ path('manage_users',{'id': pagination['first'],'dir':null }) }}">First</a></li>
+                            <li><a href="{{ path('manage_users',{'id': pagination['prev'],'dir':"-1"  }) }}">Prev.</a></li>
+                            <li><a href="{{ path('manage_users',{'id': pagination['next'],'dir':"1"   }) }}">Next</a></li>
+                            <li><a href="{{ path('manage_users',{'id': pagination['last'],'dir':null  }) }}">Last</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,4 +74,4 @@
 {% block javascript %}
     {{ parent() }}
 {% endblock %}   
- 
+

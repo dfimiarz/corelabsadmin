@@ -9,6 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\DBAL\Connection as DBLAConn;
+use CoreLABSBundle\Entity\CoreUserSearchOptions as SearchOptions;
+use CoreLABSBundle\Utils\PaginatorCntr;
 
 class DefaultController extends Controller
 {
@@ -34,34 +37,32 @@ class DefaultController extends Controller
      */
     public function listUsersAction(Request $request)
     {
-        
-        $conn = $this->get("database_connection");
-        
-        \var_dump($conn);
-        exit();
-        
-        $s_types = array("un"=>array( "txt" => "User Name", "sel" => null ),
+                  
+        $filter_types = array("un"=>array( "txt" => "User Name", "sel" => null ),
             "ln"=>array( "txt" => "Last Name", "sel" => null),
             "fn"=>array( "txt" => "First Name", "sel" => null));
 
-        $s_type = $request->query->getAlpha('s_type', "un" );
+        /* @var $options CoreUserSearchOptions */
+        $options = new SearchOptions($request);
         
-        $s_key = $request->query->get("s_key", null);
-
-        foreach ($s_types as $key => $value) {
-            if ($key == $s_type) {
-                $s_types[$key]["sel"] = "selected";
-            }
+        /**
+         * Determine which filter was selected
+         */
+        if(array_key_exists($options->fType, $filter_types)){
+            $filter_types[$options->fType]["sel"] = "selected";
         }
         
-        /* @var $crypto_service CryptoService */
-        $crypto_service = $this->get("core_labs.crypto_service");
-        $userDAO = new CoreUserDAO($this->get("core_labs.con_mysqli"));
+        $userDAO = new CoreUserDAO($this->get("database_connection"));
 
         /* @var $users CoreUserVO[] */
-        $users = $userDAO->findUsers($s_key, $s_type);
-
-        $data = array("users"=>$users,"s_key"=>$s_key,"s_types"=>$s_types);
+        $users = $userDAO->getUsers($options);
+             
+        $links = PaginatorCntr::generateLinks($options, $users);
+          
+        /*
+         * Prepare data to send to the template
+         */
+        $data = array("users"=>$users,"f_val"=>$options->fValue,"f_types"=>$filter_types,"pagination"=>$links);
         return $this->render('CoreLABSBundle:Default:admin.manage.users.html.twig',$data);
         
         
