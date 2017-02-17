@@ -4,7 +4,7 @@
 
 {% block navigation %}
    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -34,10 +34,26 @@
  
 {% endblock %}
 
+{% block header %}
+   
+    <div class="main_header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>CoreLABS</h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+
 {% block content %}
     <!-- Page Content -->
+   
     <div class="container">
-
+        
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
@@ -119,7 +135,6 @@
 {{ parent() }}
 <style>
     body {
-        padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
 
     .portfolio-item {
@@ -129,5 +144,21 @@
     footer {
         margin: 50px 0;
     }
+    
+    .main_header{
+        width: 100%;
+        margin: auto;
+        background-color: violet;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    
+    
+    
+    .navbar {
+        margin-bottom: 0px;
+    }
+    
+   
 </style>
 {% endblock %}
